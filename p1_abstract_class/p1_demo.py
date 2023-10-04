@@ -11,4 +11,4 @@ watch = electronic.Smartwatch()
 electronic.display_battery_life(watch)
 
 error_example = int
-electronic.display_battery_life(error_example)
+#electronic.display_battery_life(error_example)
