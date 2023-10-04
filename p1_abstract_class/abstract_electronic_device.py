@@ -7,6 +7,10 @@ devices and provides function for displaying them. The design of
 the module is based on OOP stratergy using abstract classes and
 methods, imported by abc module (Abstrac Base Class)
 
+Attributes
+----------
+None
+
 Classes
 -------
 ElectronicDevices : abstract class
@@ -32,6 +36,7 @@ display_battery_life
 
 from abc import ABC, abstractmethod
 
+
 class ElectronicDevice(ABC):
     """
     This class is abstract and defines a template for inheriting classes.
@@ -52,14 +57,16 @@ class ElectronicDevice(ABC):
 
     """
 
-    @abstractmethod # Convert class to abstract
-    def battery_life(self): pass # State required method template
+    @abstractmethod  # Convert class to abstract
+    def battery_life(self):
         """This abstract method confirms requirement of matching
         method in inheriting classes.
 
         """
+        pass
 
-class Smartphone(ElectronicDevice): # Inherit from ElectronicDevice
+
+class Smartphone(ElectronicDevice):  # Inherit from ElectronicDevice
     """
     Inheriting class of ElectronicDevices containing method returning
     battery life of a smartphone.
@@ -82,7 +89,7 @@ class Smartphone(ElectronicDevice): # Inherit from ElectronicDevice
         -------
         str:
             srt declaring battery life.
-        
+
         Raises
         ------
         None
@@ -90,8 +97,8 @@ class Smartphone(ElectronicDevice): # Inherit from ElectronicDevice
         """
         return "Smartphone battery life: 10 hours."
 
-class Laptop(ElectronicDevice): # Inherit from ElectronicDevice
 
+class Laptop(ElectronicDevice):  # Inherit from ElectronicDevice
     """
     Inheriting class of ElectronicDevices containing method returning
     battery life of a laptop.
@@ -114,7 +121,7 @@ class Laptop(ElectronicDevice): # Inherit from ElectronicDevice
         -------
         str:
             srt declaring battery life.
-        
+
         Raises
         ------
         None
@@ -124,8 +131,8 @@ class Laptop(ElectronicDevice): # Inherit from ElectronicDevice
         # Set individual battery life
         return "Laptop battery life: 5 hours."
 
-class Smartwatch(ElectronicDevice): # Inherit from ElectronicDevice
 
+class Smartwatch(ElectronicDevice):  # Inherit from ElectronicDevice
     """
     Inheriting class of ElectronicDevices containing method returning
     battery life of a smartwatch.
@@ -136,6 +143,7 @@ class Smartwatch(ElectronicDevice): # Inherit from ElectronicDevice
         returns str stating battery life of a smartwatch.
 
     """
+
     def battery_life(self) -> str:
         """This method returns battery life of a smartwatch.
 
@@ -147,7 +155,7 @@ class Smartwatch(ElectronicDevice): # Inherit from ElectronicDevice
         -------
         str:
             srt declaring battery life.
-        
+
         Raises
         ------
         None
@@ -156,7 +164,8 @@ class Smartwatch(ElectronicDevice): # Inherit from ElectronicDevice
         # Set individual battery life
         return "Smartwatch battery life: 24 hours."
 
-def display_battery_life(device:ElectronicDevice):
+
+def display_battery_life(device: ElectronicDevice):
     """This function prints the battery life of a given ElectronicDevice
     instance and raises roor if wrong type.
 
@@ -184,4 +193,4 @@ def display_battery_life(device:ElectronicDevice):
     try:
         print(device.battery_life())
     except AttributeError:
-        raise ValueError('parameter "device" must be type ElectronicDevice')
+        raise ValueError('Parameter "device" must be type ElectronicDevice')
