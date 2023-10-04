@@ -1,3 +1,4 @@
+# pylint: disable=import-error
 
 """
 Test for abstract_electronic_device module

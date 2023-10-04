@@ -1,3 +1,4 @@
+# pylint: disable=import-error
 
 """Demonstration of how to use the abstract_electronic_device module.
 
@@ -8,7 +9,7 @@ Steps:
 
 """
 # Step 1: Import module
-import abstract_electronic_device as electronic
+import project.abstract_electronic_device as electronic
 
 
 # Step 2: Create electronic device instances
