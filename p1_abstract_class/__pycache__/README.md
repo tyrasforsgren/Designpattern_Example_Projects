@@ -4,13 +4,11 @@ The Electronic Device Battery Life Module defines battery lives for different ty
 electronic devices, such as smartphones, laptops, and smartwatches. It also provides a
 function for displaying the battery life of these devices.
 
-
-
 ## Installation
 
 To use this module, you need to have Python 3.10.8 installed on your system.
 
-1. Clone the repository to your local machine:
+Clone the repository to your computer:
 
 >> git clone https://github.com/tyrasforsgren/effective_exam_2.git
    
