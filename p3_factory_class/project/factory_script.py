@@ -1,5 +1,56 @@
+
+"""
+Vehicle Factory Script
+
+This script demonstrates the use of a Vehicle Factory to create different types
+of vehicles (Car, Motorcycle, Bicycle) based on parameters. It defines
+a set of vehicle classes and a factory class for creating instances of these
+classes.
+
+Classes
+-------
+VehicleType(Enum):
+    An enumeration of vehicle types Car, Bicycle, and Motorcycle.
+
+Vehicle(ABC):
+    An abstract base class (ABC) representing a vehicle with an abstract method
+    'get_name' that concrete vehicle classes require.
+
+Car(Vehicle):
+    A concrete vehicle class representing a car with a 'get_name' method
+    returning the name 'Car'.
+
+Motorcycle(Vehicle):
+    A concrete vehicle class representing a motorcycle with a 'get_name' method
+    returning the name 'Motorcycle'.
+
+Bicycle(Vehicle):
+    A concrete vehicle class representing a bicycle with a 'get_name' method
+    returning the name 'Bicycle'.
+
+VehicleFactory:
+    A class for creating different types of vehicles based on input parameters.
+    It includes a 'create_vehicle' method to instantiate specific vehicle types.
+
+Main Function
+-------------
+def main():
+    Demonstrates the use of the VehicleFactory class to create and print the
+    names of different types of vehicles. Also demonstrates an errorcase.
+
+Usage
+-----
+Run this script as an example of Factory Design.
+
+TODO : Make VehicleType and VehicleFactory adhere to Open/Close from SOLID.
+Currently modifications to these classes are needed to be made incase of adding more
+vehicle concrete classes.
+
+"""
+
 from abc import ABC, abstractmethod
 from enum import Enum, auto
+
 
 class VehicleType(Enum):
     """
@@ -23,6 +74,8 @@ class VehicleType(Enum):
     MOTORCYCLE = auto()
 
 # Create an abstract Vehicle class
+
+
 class Vehicle(ABC):
     """
     Abstract Vehicle class.
@@ -36,11 +89,14 @@ class Vehicle(ABC):
         Abstract method to get the name of the vehicle.
     """
     @abstractmethod
-    def get_name(self): # Requirement
+    def get_name(self):  # Requirement
+        """Set requirement for method of same name."""
         pass
 
 # Create concrete vehicle classes (Car, Motorcycle, Bicycle)
 # Concrete = inherits from abstract with actual code
+
+
 class Car(Vehicle):
     """
     Concrete Car class.
@@ -48,8 +104,12 @@ class Car(Vehicle):
     This class represents a concrete car and implements the 'get_name' method
     to return the name 'Car'. Inherits from abstract class Vechicle.
     """
+
     def get_name(self):
+        """Get name of the vehicle
+        """
         return "Car"
+
 
 class Motorcycle(Vehicle):
     """
@@ -58,8 +118,12 @@ class Motorcycle(Vehicle):
     This class represents a concrete motorcycle and implements the 'get_name'
     method to return the name 'Motorcycle'. Inherits from abstract class Vechicle.
     """
+
     def get_name(self):
+        """Get name of the vehicle
+        """
         return "Motorcycle"
+
 
 class Bicycle(Vehicle):
     """
@@ -68,10 +132,15 @@ class Bicycle(Vehicle):
     This class represents a concrete bicycle and implements the 'get_name'
     method to return the name 'Bicycle'. Inherits from abstract class Vechicle.
     """
+
     def get_name(self):
+        """Get name of the vehicle
+        """
         return "Bicycle"
 
 # Create a VehicleFactory class
+
+
 class VehicleFactory:
     """
     Vehicle Factory class.
@@ -100,23 +169,23 @@ class VehicleFactory:
         -------
         Vehicle
             An instance of the specified vehicle type.
-        
+
         Raises
         ------
         ValueError
             If the provided 'vehicle_type' is invalid.
-            
+
         """
         if vehicle_type == VehicleType.CAR:
             return Car()
-        elif vehicle_type == VehicleType.BICYCLE:
+        if vehicle_type == VehicleType.BICYCLE:
             return Bicycle()
-        elif vehicle_type == VehicleType.MOTORCYCLE:
+        if vehicle_type == VehicleType.MOTORCYCLE:
             return Motorcycle()
-        else:
-            raise ValueError(f'The vehicle type : "{str(vehicle_type)}" is invalid.')
+        raise ValueError(
+            f'The vehicle type : "{str(vehicle_type)}" is invalid.')
 
-# Example usage:
+# Example :
 
 
 def main():
@@ -129,10 +198,10 @@ def main():
     Returns
     -------
     None
-    
+
     """
     factory = VehicleFactory()
-    
+
     # Create a Car instance and print its name
     car = factory.create_vehicle(VehicleType.CAR)
     print(f"Vehicle Type: {car.get_name()}")
@@ -143,7 +212,7 @@ def main():
 
     # Attempt to create an invalid vehicle type (should raise an exception)
     try:
-        bicycle = factory.create_vehicle('hj')
+        factory.create_vehicle('hj')
     except ValueError as error:
         print(f"Error: {error}")
 

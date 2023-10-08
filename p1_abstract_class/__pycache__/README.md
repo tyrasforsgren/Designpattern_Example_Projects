@@ -8,9 +8,9 @@ function for displaying the battery life of these devices.
 
 To use this module, you need to have Python 3.10.8 installed on your system.
 
-Clone the repository to your computer:
+Clone the repository to your computer or download as a .zip file:
 
->> git clone https://github.com/tyrasforsgren/effective_exam_2.git
+> git clone https://github.com/tyrasforsgren/effective_exam_2.git
    
 ## Usage
 Creating Electronic Device Instances

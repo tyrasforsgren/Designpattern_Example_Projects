@@ -21,7 +21,7 @@ None
 
 import json
 
-class ConfigMeta:
+class ConfigMeta(type):
     """
     Metaclass for enforcing the Singleton pattern.
 
@@ -60,7 +60,7 @@ class ConfigMeta:
             cls._instances[cls] = instance
         return cls._instances[cls]
 
-class ConfigManager(ConfigMeta):
+class ConfigManager(metaclass=ConfigMeta):
     """
     Configuration Manager Class.
 
@@ -131,11 +131,14 @@ if __name__ == '__main__':
     api_manager = ConfigManager()
 
     # Check if both instances are the same: FIXME: What?????
-    print('Instances are same: ', database_manager == api_manager)
+    print('Database Manager ID:', id(database_manager))
+    print('API Manager ID:', id(api_manager))
+    print('Instances are same: ', database_manager is api_manager)
 
     # Load configuration settings from the JSON file.
-    database_manager.load_config(r'p2_singleton\docs\config_sample.json')
-    api_manager.load_config(r'p2_singleton\docs\config_sample.json')
+    database_manager.load_config(r'p2_singleton/docs/config_sample.json')
+    api_manager.load_config(r'p2_singleton/docs/config_sample.json')
+
 
     # Get and print specific settings.
     db_host = database_manager.get_setting('database.host')

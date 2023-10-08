@@ -9,9 +9,6 @@ class TestConfigManager(unittest.TestCase):
     def setUp(self):
         self.config_manager = ConfigManager()
 
-    def tearDown(self):
-        self.config_manager = None
-
     # Mock the open function to simulate file operations
     @patch('builtins.open', new_callable=mock_open)
     def test_load_config(self, mock_file_open):
@@ -42,6 +39,30 @@ class TestConfigManager(unittest.TestCase):
         # Test getting a non-existing setting
         non_existing_setting = self.config_manager.get_setting('non_existing_setting')
         self.assertIsNone(non_existing_setting)
+
+    @patch('builtins.open', new_callable=mock_open)
+    def test_load_non_existent_file(self, mock_file_open):
+        # Simulate loading a non-existent file
+        mock_file_open.side_effect = FileNotFoundError
+
+        # Call the load_config method with a non-existent file
+        self.config_manager.load_config('non_existent_file.json')
+
+        # Assert that config_data is still an empty dictionary
+        self.assertEqual(self.config_manager.config_data, {})
+
+    @patch('builtins.open', new_callable=mock_open)
+    def test_load_empty_file(self, mock_file_open):
+        # Mock an empty JSON file
+        mock_file_open.return_value.read.return_value = ''
+
+        # Call the load_config method with an empty file
+        self.config_manager.load_config('empty_file.json')
+
+        # Assert that config_data is still an empty dictionary
+        self.assertEqual(self.config_manager.config_data, {})
+
+    # Add more test cases for edge cases, negative scenarios, and concurrent access if needed
 
 if __name__ == '__main__':
     unittest.main()
