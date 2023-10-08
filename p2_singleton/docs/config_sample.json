@@ -1,11 +1,13 @@
 {
-    "name": "John Doe",
-    "age": 30,
-    "isStudent": false,
-    "hobbies": ["reading", "hiking", "coding"],
-    "address": {
-        "street": "123 Main St",
-        "city": "Exampleville",
-        "zipcode": "12345"
+    "database": {
+      "host": "localhost",
+      "port": 5432,
+      "user": "admin",
+      "password": "password"
+    },
+    "api": {
+      "host": "0.0.0.0",
+      "port": 8000
     }
-}
+  }
+  
