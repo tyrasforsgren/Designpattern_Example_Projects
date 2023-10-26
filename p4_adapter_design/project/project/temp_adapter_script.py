@@ -66,9 +66,9 @@ class CelsiusTemperatureSensor:
         Initialize the CelsiusTemperatureSensor with a default temperature
         of 25°C.
         """
-        self._temperature = 25
+        self._temperature = 25 # C
 
-    def set_temperature(self, temperature) -> None:
+    def set_temperature(self, temperature:int) -> None:
         """
         Set the temperature of the sensor to the given value.
 
@@ -82,7 +82,7 @@ class CelsiusTemperatureSensor:
         None
 
         """
-        self._temperature = temperature
+        self._temperature = temperature # C
 
     def get_temperature_celsius(self) -> int:
         """
@@ -94,7 +94,7 @@ class CelsiusTemperatureSensor:
             The current temperature reading in Celsius.
 
         """
-        return self._temperature
+        return self._temperature # C
 
 
 class FahrenheitTemperatureSensor:
@@ -125,7 +125,7 @@ class FahrenheitTemperatureSensor:
         """
         self._temperature = 77
 
-    def set_temperature(self, temperature) -> None:
+    def set_temperature(self, temperature:int) -> None:
         """
         Set the temperature of the sensor to the given value in Fahrenheit.
 
@@ -139,7 +139,7 @@ class FahrenheitTemperatureSensor:
         None
 
         """
-        self._temperature = temperature
+        self._temperature = temperature # F
 
     def get_temperature_fahrenheit(self) -> int:
         """
@@ -151,7 +151,7 @@ class FahrenheitTemperatureSensor:
             The current temperature reading in Fahrenheit.
 
         """
-        return self._temperature
+        return self._temperature # F 
 
 
 class TemperatureSensorAdapter:
@@ -207,7 +207,7 @@ class TemperatureSensorAdapter:
         """
         fahrenheit_temperature = round((temperature * 1.8) + 32, 2)
         # Convert Celsius to Fahrenheit
-        self._sensor.set_temperature(fahrenheit_temperature)
+        self._sensor.set_temperature(fahrenheit_temperature) # F
         # Set temperature in Fahrenheit
 
     def get_temperature_celsius(self) -> int:
@@ -221,7 +221,7 @@ class TemperatureSensorAdapter:
             The current temperature reading in Celsius.
 
         """
-        return round(((self._sensor._temperature - 32) / 1.8), 2)
+        return round(((self._sensor._temperature - 32) / 1.8), 2) # C
         # Return the converted Fahrenheit to Celsius value
 
 
@@ -244,9 +244,9 @@ def display_temperature(sensor) -> None:
 
 
 def test_temperature_sensor_adapter(
-        adapter: TemperatureSensorAdapter,
-        cel_sensor: CelsiusTemperatureSensor,
-        far_sensor: FahrenheitTemperatureSensor) -> None:
+        adapter:TemperatureSensorAdapter,
+        cel_sensor:CelsiusTemperatureSensor,
+        far_sensor:FahrenheitTemperatureSensor) -> None:
     """
     Test the TemperatureSensorAdapter class for conversions and accuracy.
 
@@ -314,8 +314,8 @@ if __name__ == "__main__":
     far_adapter = TemperatureSensorAdapter(far_sensor)
 
     display_temperature(cel_sensor)  # -> 25
-    display_temperature(far_adapter)  # -> 77°F = 25°C
-    # They should return the same
+    display_temperature(far_adapter)  # -> 77°F conv to 25°C
+    # They should return the same value 25
 
     test_temperature_sensor_adapter(adapter=far_adapter,
                                     cel_sensor=cel_sensor,
