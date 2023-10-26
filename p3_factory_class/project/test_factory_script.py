@@ -32,9 +32,7 @@ None
 """
 
 import unittest
-from enum import auto, Enum
-from abc import ABC, abstractclassmethod
-from unittest.mock import patch, mock_open
+from unittest.mock import patch
 from io import StringIO
 from factory_script import VehicleFactory, VehicleType, Car, Motorcycle, Bicycle
 from factory_script import main

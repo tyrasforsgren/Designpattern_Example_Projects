@@ -39,7 +39,8 @@ def test_temperature_sensor_adapter(adapter, celsius_sensor, fahrenheit_sensor):
 
     celsius_sensor.set_temperature(0)
     adapter.set_temperature(32)
-    assert abs(celsius_sensor.get_temperature_celsius() - adapter.get_temperature_celsius()) < 0.0001, "Adapter conversion is incorrect"
+    d= abs(celsius_sensor.get_temperature_celsius() - adapter.get_temperature_celsius())
+    assert  d< 0.0001, "Adapter conversion is incorrect"
 
     print("All tests passed!")
 
@@ -55,4 +56,4 @@ if __name__ == "__main__":
         display_temperature(adapter)
 
     # TODO: Uncomment the test function call after implementing the adapter
-    # test_temperature_sensor_adapter(adapter, celsius_sensor, fahrenheit_sensor)
+    test_temperature_sensor_adapter(adapter, celsius_sensor, fahrenheit_sensor)
